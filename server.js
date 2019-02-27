@@ -13,6 +13,7 @@ const express = require('express')
 const app = express()
 //bindegleid zwischen den clied und nodejs
 app.use(bodyParser.urlencoded({extendet: true}))
+app.use(express.static('public'))
 app.set('view engine', 'ejs')
 //Daten aus der Datenbank an die html formular
 app.use(express.static('puplic'))
