@@ -3,6 +3,7 @@
 Kommentar*/
 //Infos un anderen Programieren zeigen wie etwas funktionert
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 //Anweisungen nach oben nach untnten abgearbeitet
 // zweitesn tool
