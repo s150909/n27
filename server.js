@@ -36,6 +36,20 @@ app.get('/login',(req, res, next) => {
     })
 })
 
+app.get('/impressum',(req, res, next) => {   
+
+    let idKunde = req.cookies['istAngemeldetAls']
+    
+    if(idKunde){
+        console.log("Kunde ist angemeldet als " + idKunde)
+        res.render('impressum.ejs', {                              
+        })
+    }else{
+        res.render('login.ejs', {                    
+        })    
+    }
+})
+
 app.post('/',(req, res, next) => {   
 
     const idKunde = req.body.idKunde
