@@ -1,3 +1,11 @@
+class Konto{
+    constructor(){
+        this.Kontonummer
+        this.Kontoart
+    }
+}
+
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -17,7 +25,8 @@ app.get('/',(req, res, next) => {
     
     if(idKunde){
         console.log("Kunde ist angemeldet als " + idKunde)
-        res.render('index.ejs', {                              
+        res
+        .render('index.ejs', {                              
         })
     }else{
         res.render('login.ejs', {                    
@@ -68,13 +77,19 @@ app.post('/',(req, res, next) => {
     }
 })
 
-app.post('kontoAnlegen',(req, res, next) => {   
+app.post('/kontoAnlegen',(req, res, next) => {   
 
     let idKunde = req.cookies['istAngemeldetAls']
     
     if(idKunde){
+
+        let konto = new Konto()
+        konto.kontonummer = req.body.kontonummer
+        konto.Kontoart = req.body.kontoart
+        
         console.log("Kunde ist angemeldet als " + idKunde)
-        res.render('kontoAnlegen.ejs', {                              
+        res.render('kontoAnlegen.ejs', {    
+            meldung : "Das Konto" + konto.Kontonummer + "Das Konto wurde erfolgreich angelegt."                            
         })
     }else{
         res.render('login.ejs', {                    
@@ -86,8 +101,12 @@ app.get('/kontoAnlegen',(req, res, next) => {
     let idKunde = req.cookies['istAngemeldetAls']
     
     if(idKunde){
+
+
+        
         console.log("Kunde ist angemeldet als " + idKunde)
-        res.render('kontoAnlegen.ejs', {                              
+        res.render('kontoAnlegen.ejs', { 
+            meldung :""                           
         })
     }else{
         res.render('login.ejs', {                    
