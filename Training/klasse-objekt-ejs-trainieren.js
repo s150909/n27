@@ -93,6 +93,11 @@ spieler.verein = "FC Bayern München"
 spieler.position = "Stürmer"
 spieler.trikotnummer = 25
 
+class Restaurant {
+    constructor(){
+
+    }
+}
 
 
 
