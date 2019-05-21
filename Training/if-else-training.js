@@ -6,7 +6,7 @@
  * 
  * und die Ausgabe im Terminal beobachten 
  */
-
+     
 
 // die Zahl 1 wird zugewiesen an eine Variable namens x
  let x = undefined

@@ -3,7 +3,7 @@ class Auto {
       this.Raeder
       this.Sitze
     }
-  }
+}
 
   
   class Fussballer {
@@ -50,6 +50,16 @@ class Schueler{
     }
 }
 
+class Anne{
+    constructor(){
+        this.name
+        this.geburtstag
+    }
+}
+let anne = new Anne()
+anne.name = "Hülska"
+anne.geburtstag="31.03.2002"
+
 class Spieler{
     constructor(){
         this.name
@@ -73,6 +83,7 @@ class Spieler{
 //Initialisierung belegt die reservierte Speicherzelle mit konkreten Eigenschaftswerten.
 
 //rechteck.breite = 3
+// das gleich dazwischen lautet "wird zugewiesen an"
 
 let rechteck = new Rechteck()
 rechteck.breite = 3
@@ -95,9 +106,15 @@ spieler.trikotnummer = 25
 
 class Restaurant {
     constructor(){
-
+        this.name
+        this.sterne
+        this.wo
     }
 }
+let restaurant = new Restaurant
+restaurant.name = "Alter Garten"
+restaurant.sterne = 5
+restaurant.wo = "Klein Reken"
 
 
 
@@ -120,7 +137,12 @@ app.get('/klasse-objekt-ejs-trainieren',(req, res, next) => {
         name: spieler.name,
         verein: spieler.verein,
         position: spieler.position,
-        trikotnummer:spieler.trikotnummer
+        trikotnummer:spieler.trikotnummer,
+        name: restaurant.name,
+        sterne: restaurant.sterne,
+        wo: restaurant.wo
+        
+
         
 })
 })
