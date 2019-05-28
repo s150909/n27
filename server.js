@@ -21,7 +21,7 @@ let kunde = new Kunde()
 //Initialierung
 kunde.Mail = "zuki@gmail.com"
 kunde.Name = "Zuki"
-kunde.Kennwort = "1234"
+kunde.Kennwort = "123"
 kunde.IdKunde = 4711
 kunde.Geburtsdatum = "13.5"
 kunde.Adresse = "Zur hohen Straße"
