@@ -1,8 +1,19 @@
 {
-  "name": "n27",
+  "name": "n27gw11b",
   "version": "1.0.0",
   "description": "Wir wollen eine Banking-App programmieren, die sich an die N26-Bank anlehnt.",
   "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://stbaeumer@bitbucket.org/stbaeumer/n27gw11b.git"
+  },
+  "author": "Stefan",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/stbaeumer/n27gw11b#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
@@ -10,17 +21,5 @@
     "express": "^4.16.4",
     "iban": "0.0.12",
     "nodemon": "^1.18.10"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://s150909@bitbucket.org/s150909/n27.git"
-  },
-  "author": "Anne",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/s150909/n27#readme"
+  }
 }

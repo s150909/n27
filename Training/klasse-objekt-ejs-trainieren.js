@@ -1,23 +1,3 @@
-class Auto {
-    constructor() {
-      this.Raeder
-      this.Sitze
-    }
-}
-
-  
-  class Fussballer {
-      constructer(){
-          this.nummer
-          this.position
-      }
-  }
-
-  class Gericht {
-      constructer(){
-          this.Preis
-      }
-  }
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -28,99 +8,70 @@ app.set('views', 'Training')
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log('Server lauscht auf Port %s', server.address().port)    
 })
-// Eine Klasse ist ein Bauplan.
-// ein Objekt ist die konkrete umsetzung auf der Grundlage des Bauplans
-// Alle Objekte eines Bauplanes haben die selben eigenschaften, aber
+
+// Eine Klasse ist Bauplan. 
+// Ein Objekt ist die konkrete Umsetzung auf der Grundlage des Bauplans.
+// Alle Objekte eines Bauplans haben dieselben Eigenschaften, aber
 // möglicherweise unterschiedliche Eigenschaftswerte.
 
-//Klassendefinition
-//========================
+// Klassendefinition 
+// =================
+
 class Rechteck{
-    constructor(){
-        this.laenge
-        this.breite
-    }
+   constructor(){
+       this.laenge
+       this.breite
+   } 
 }
+
 class Schueler{
     constructor(){
         this.geschlecht
         this.vorname
         this.alter
-
     }
 }
 
-class Anne{
+class Fussballer{
     constructor(){
         this.name
-        this.geburtstag
-    }
-}
-let anne = new Anne()
-anne.name = "Hülska"
-anne.geburtstag="31.03.2002"
-
-class Spieler{
-    constructor(){
-        this.name
-        this.verein
-        this.position
-        this.Trikotnummer
+        this.nationalitaet
+        this.nummer 
     }
 }
 
-//Deklaration eines Rechteck-Objekt vom Typ Rechteck
-// Deklaration= Bekanntmachung, dass es ein Objekt vom Typ Rechteck geben soll.
-// Klasse wird großgeschrieben , Objekt nicht
+// Deklaration eines Rechteck-Objekts vom Typ Rechteck
+// Deklaration = Bekanntmachung, dass es ein Objekt vom Typ Rechteck geben soll.
 
-//let rechteck = ...
+// let rechteck = ...
 
-//instanziierung erkennt man am reservierten Wort "new".
-//Instanziierung reserviert Speicherzellen für das soeben deklarierte Objekt.
+// Instanziierung erkennt man am reservierten Wort "new".
+// Instanziierung reserviert Speicherzellen für das soeben deklarierte Objekt.
 
-//...= new Rechteck()
+// ... = new Rechteck()
 
-//Initialisierung belegt die reservierte Speicherzelle mit konkreten Eigenschaftswerten.
+// Initialisierung belegt die reservierten Speicherzellen mit konkreten
+// Eigenschaftswerten.
 
-//rechteck.breite = 3
-// das gleich dazwischen lautet "wird zugewiesen an"
+// rechteck.breite = 3
 
 let rechteck = new Rechteck()
 rechteck.breite = 3
 rechteck.laenge = 2
 
-console.log("Breite: " + rechteck.breite)
-console.log("Länge: " +rechteck.laenge)
+console.log("Breite : " + rechteck.breite)
+console.log("Länge :  " + rechteck.laenge)
 console.log(rechteck)
 
 let schueler = new Schueler()
 schueler.geschlecht = "w"
 schueler.vorname = "Petra"
-schueler.alter = 16 
+schueler.alter = 16
 
-let spieler = new Spieler()
-spieler.name = "Thomas Müller"
-spieler.verein = "FC Bayern München"
-spieler.position = "Stürmer"
-spieler.trikotnummer = 25
-
-class Restaurant {
-    constructor(){
-        this.name
-        this.sterne
-        this.wo
-    }
-}
-let restaurant = new Restaurant
-restaurant.name = "Alter Garten"
-restaurant.sterne = 5
-restaurant.wo = "Klein Reken"
-
-
-
-
-
-
+let fussballer = new Fussballer()
+fussballer.name = "Fred"
+fussballer.nationalitaet = "D"
+fussballer.nummer = 10
 
 // Wenn localhost:3000/klasse-objekt-ejs-trainieren aufgerufen wird ...
 
@@ -129,20 +80,13 @@ app.get('/klasse-objekt-ejs-trainieren',(req, res, next) => {
     // ... wird klasse-objekt-ejs-trainieren.ejs gerendert:
 
     res.render('klasse-objekt-ejs-trainieren', {
-        breite : rechteck.breite,
-        laenge : rechteck.laenge,
-        geschlecht : schueler.geschlecht,
-        vorname : schueler.vorname,
-        alter:  schueler.alter,
-        name: spieler.name,
-        verein: spieler.verein,
-        position: spieler.position,
-        trikotnummer:spieler.trikotnummer,
-        name: restaurant.name,
-        sterne: restaurant.sterne,
-        wo: restaurant.wo
-        
-
-        
-})
+       breite : rechteck.breite,
+       laenge : rechteck.laenge,
+       geschlecht : schueler.geschlecht,
+       vorname : schueler.vorname,
+       alter : schueler.alter,
+       name : fussballer.name,
+       nationalitaet : fussballer.nationalitaet,
+       nummer : fussballer.nummer
+    })
 })
