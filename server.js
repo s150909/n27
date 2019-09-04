@@ -34,6 +34,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const app = express()
+const iban = require ('iban')
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
@@ -175,6 +176,10 @@ app.get('/profilBearbeiten',(req, res, next) => {
 app.post('/profilBearbeiten',(req, res, next) => {   
 
     let idKunde = req.cookies['istAngemeldetAls']
+    const bankleitzahl = "27000000"
+    const laendererkennung = "DE"
+    let errechneteIban = iban.fromBBAN(laenderkennung, bankleitzahl + " " + req.body.kontonummer)
+    console.log(errechneteIban)
     
     if(idKunde){
         console.log("Kunde ist angemeldet als " + idKunde)
