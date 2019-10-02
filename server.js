@@ -34,10 +34,33 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const iban = require('iban')
 const app = express()
+const mysql = require('mysql')
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieParser())
+
+const dbVerbindung = mysql.createConnection({
+    host: "10.40.38.110",
+    port:"3306",
+    database:"dbn27",
+    user:"placematman",
+    password:"BKB123456!"
+
+})
+dbVerbindung.connect()
+// Die Kontotabelle wird angelegt.
+
+dbVerbindung.connect(function(err){
+    dbVerbindung.query("CREATE TABLE IF NOT EXISTS konto(iban VARCHAR(22), anfangssaldo FLOAT, kontoart VARCHAR(20), timestamp TIMESTAMP, PRIMARY KEY(iban));", function(err, result){
+        if(err){
+            console.log("Es ist ein Fehler aufgetreten: " + err)   
+        }else{
+            console.log("Tabelle erstellt bzw. schon existent.")
+        }
+    })
+})
+//Großgeschrieben weil es eine Datenbank ist
 
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log('Server lauscht auf Port %s', server.address().port)    
@@ -45,6 +68,7 @@ const server = app.listen(process.env.PORT || 3000, () => {
 
 // Beim Aufrufen der Startseite wird die 
 // app.get('/' ...) abgearbeitet.
+
 
 app.get('/',(req, res, next) => {   
 
@@ -150,6 +174,10 @@ app.post('/kontoAnlegen',(req, res, next) => {
         let errechneteIban = iban.fromBBAN(laenderkennung, bankleitzahl + " " + req.body.kontonummer)
         console.log(errechneteIban)
 
+        dbVerbindung.query("INSERT INTO konto(iban, anfangssaldo, kontoart, timestamp); VALUES (123)")
+        // Einfügen von Kontonummer in die Tabelle konnte (SQL)
+
+
         console.log("Kunde ist angemeldet als " + idKunde)
         res.render('kontoAnlegen.ejs', {                              
            meldung : "Das Konto mit der IBAN " + errechneteIban + " wurde erfolgreich angelegt." 
@@ -203,7 +231,7 @@ app.post('/profilBearbeiten',(req, res, next) => {
     }
 })
 
-app.get('/überweisen',(req, res, next) => {   
+app.get('/ueberweisen',(req, res, next) => {   
 
     let idKunde = req.cookies['istAngemeldetAls']
     
@@ -227,12 +255,14 @@ app.post('/ueberweisen',(req, res, next) => {
     if(idKunde){
         console.log("Kunde ist angemeldet als " + idKunde)
         
-        kunde.Nachname = req.body.nachname
-        kunde.Kennwort = req.body.kennwort
-        kunde.Telefonnummer = req.body.telefonnummer
-        kunde.Mail = req.body.mail
-        kunde.Nachname = "Hülsken"
-        
+        let zielkontonummer = req.body.zielkontonummer
+        let betrag = req.body.betrag
+        // Das Zielkonto und der Betrag wird aus dem Formular entgegengenommen
+ 
+        // TO-Do: Saldo um den Betrag reduzieren
+        // TO-Do: Betrag beim Zielkontogutschreiben
+
+        // Umsetzung mit einer gemeinsamen relationalen Datenbank
         res.render('ueberweisen.ejs', {                              
             meldung : "Die Überweisung wurde erfolgreich ausgeführt."
         })
