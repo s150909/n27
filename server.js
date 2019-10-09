@@ -1,4 +1,7 @@
-// Klassendefinition
+// Klassendefinition. Die Klasse ist der Bauplan,
+//der alle relevanten Eigenschaften enthält.
+// Nach der Deklaration wird mit dem reservierten Wort 
+// 'new' ein Objekt der Klasse instanziiert.
 
 class Konto{
     constructor(){
@@ -52,7 +55,7 @@ dbVerbindung.connect()
 // Die Kontotabelle wird angelegt.
 
 dbVerbindung.connect(function(err){
-    dbVerbindung.query("CREATE TABLE IF NOT EXISTS konto(iban VARCHAR(22), anfangssaldo FLOAT, kontoart VARCHAR(20), timestamp TIMESTAMP, PRIMARY KEY(iban));", function(err, result){
+    dbVerbindung.query("CREATE TABLE IF NOT EXISTS konto(iban VARCHAR(22), anfangssaldo DECIMAL(15,2), kontoart VARCHAR(20), timestamp TIMESTAMP, PRIMARY KEY(iban));", function(err, result){
         if(err){
             console.log("Es ist ein Fehler aufgetreten: " + err)   
         }else{
@@ -61,6 +64,10 @@ dbVerbindung.connect(function(err){
     })
 })
 //Großgeschrieben weil es eine Datenbank ist
+// Sprache sql 
+// tabelle wird angelegt
+// Varchar heiße das es maximal 22 oder 20 buchstaben hingeschrieben werden
+//primary key guckt das es die iban auch wirklich nur 1 mal gibt
 
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log('Server lauscht auf Port %s', server.address().port)    
@@ -163,18 +170,21 @@ app.post('/kontoAnlegen',(req, res, next) => {
     let idKunde = req.cookies['istAngemeldetAls']
     
     if(idKunde){
+        //Von der Klasse wird ein Objelt namens Konto instanziiert.            
+        let konto = new Konto
+        // Nach der Deklaration un der Instanziierung kommt due Instialisierung.
+        // Das heißt, dass konkrete Eigenschaftswerte dem Objekt zugewiesen werden.
 
-        let konto = new Konto()
         konto.Kontonummer = req.body.kontonummer
         konto.Kontoart = req.body.kontoart
-
+        
         const bankleitzahl = "27000000"
         const laenderkennung = "DE"
 
         let errechneteIban = iban.fromBBAN(laenderkennung, bankleitzahl + " " + req.body.kontonummer)
         console.log(errechneteIban)
 
-        dbVerbindung.query("INSERT INTO konto(iban, anfangssaldo, kontoart, timestamp); VALUES (123)")
+        dbVerbindung.query("INSERT INTO konto(iban, anfangssaldo, kontoart, timestamp)VALOUS ('DE7890', 2000, 'Sparkonto', NOW()); VALUES (123)")
         // Einfügen von Kontonummer in die Tabelle konnte (SQL)
 
 
